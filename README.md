@@ -164,13 +164,14 @@ ws2 = wb2[ws.title]
 assert ws2['A1'].style == user_style 
 ```
 
-##SUMMARY
+## SUMMARY
 
-###1. xlsxwriter
+### 1. xlsxwriter
 - I feel that xlsxwriter's simple, very easy to write, good at formatting.
 - I can write and work nearly normal excel (MS). 
 - Odoo framework's used to make for reporting module for many version until now.
-###2. openpyxl 
+
+### 2. openpyxl 
 - It write and make data to excel file as `xlsxwriter`. But i think it's less better than xlsxwriter for formatting, writing excel cell
 - For reading, we need run `2 for command` to get cell value and only `1 for command` with `xlrd` .
 So i think xlrd is better than openpyxl for performance, coding, reading code.
