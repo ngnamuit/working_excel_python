@@ -178,5 +178,5 @@ assert ws2['A1'].style == user_style
 So i think xlrd is better than openpyxl for performance, coding, reading code.
 
 **Finally**:
-- For reading excel file I'll choose `xlrc`.
+- For reading excel file I'll choose `xlrd`.
 - For writing excel file I'll choose `xlswriter`.
