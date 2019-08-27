@@ -165,6 +165,7 @@ assert ws2['A1'].style == user_style
 ```
 
 ##SUMMARY
+
 ###1. xlsxwriter
 - I feel that xlsxwriter's simple, very easy to write, good at formatting.
 - I can write and work nearly normal excel (MS). 
@@ -174,4 +175,6 @@ assert ws2['A1'].style == user_style
 - For reading, we need run `2 for command` to get cell value and only `1 for command` with `xlrd` .
 So i think xlrd is better than openpyxl for performance, coding, reading code.
 
-**Finally**, for reading excel file i'll choose `xlrc` and for writing i'll choose `xlswriter`
+**Finally**:
+- For reading excel file i'll choose `xlrc`.
+- For writing i'll choose `xlswriter`.
