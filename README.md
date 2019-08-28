@@ -170,7 +170,7 @@ assert ws2['A1'].style == user_style
 
 ### 1. Install environment
 - Install pyenv for mac: 
-```buildoutcfg
+```
 # Install Homebrew if it isn't already available
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
 brew install pyenv 
@@ -182,7 +182,7 @@ pyenv versions
 ```
 
 - Install pyenv for ubuntu: 
-```buildoutcfg
+```
 sudo apt update -y
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
@@ -200,14 +200,14 @@ pyenv --version
 ```
 
 - Install python 3.6.7
-```buildoutcfg
+```
 pyenv install 3.6.7
 pyenv global 3.6.7
 python --version # should be 3.6.7
 ```
 
 - Install pipenv
-```buildoutcfg
+```
 # install pipenv
 curl https://raw.githubusercontent.com/kennethreitz/pipenv/master/get-pipenv.py | python
 echo "
