@@ -12,14 +12,17 @@ Maybe, you must take a lot of time for choosing which package. For this repo, I 
 - I can write and work nearly normal excel (MS). 
 - Odoo framework's used to make for reporting module for many version until now.
 
-### 2. openpyxl 
+### 2. xlrd
+- This package for reading data and formatting information from Excel files (xlsx, xls).
+
+### 3. openpyxl 
 - It write and make data to excel file similar to `xlsxwriter`.
 - It write to existing excel file, `xlsxwriter` can't do it.
 - It read excel file similar to `xlrd`.
 
 **Finally**:
-- I'll choose `openpyxl` package to write/read excel file. 
-- It includes 2 read/write package  and I think using one package to work help us easier to handel.
+- `openpyxl` includes read/write features of 2 package (`xlsxwriter` + `xlrd`)  and I think using one package to work help us easier to handel.
+- I'll choose `openpyxl` package to write/read excel file.
 
 
 ## xlsxwriter
