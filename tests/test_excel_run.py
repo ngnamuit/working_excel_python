@@ -89,7 +89,7 @@ class TestExcelRun(unittest.TestCase):
     def test_xlrd_read_excel(self):
         # create fixture
         expenses = (['Rent', 1000], ['Gym', 50])
-        excel_file_name = PROJECT_PATH + '/tmp/input/' + 'test.xlsx'
+        excel_file_name = PROJECT_PATH + '/tests/fixture/input/' + 'test.xlsx'
         excelread = ExcelRead()
 
         # check excel file is exist and it's data
@@ -99,7 +99,7 @@ class TestExcelRun(unittest.TestCase):
     def test_openpyxl_read_excel(self):
         # create fixture
         expenses = (['Rent', 1000], ['Gym', 50])
-        excel_file_name = PROJECT_PATH + '/tmp/input/' + 'test.xlsx'
+        excel_file_name = PROJECT_PATH + '/tests/fixture/input/' + 'test.xlsx'
         excelread = ExcelRead()
 
         # check excel file is exist and it's data
