@@ -5,6 +5,23 @@ and your purpose is read/write data Excel on python
 Maybe, you must take a lot of time for choosing which package. For this repo, I hope I could help you to choose what package to read/write excel.
 
 
+## SUMMARY
+
+### 1. xlsxwriter
+- I feel that xlsxwriter's simple, very easy to write, good at formatting.
+- I can write and work nearly normal excel (MS). 
+- Odoo framework's used to make for reporting module for many version until now.
+
+### 2. openpyxl 
+- It write and make data to excel file similar to `xlsxwriter`. But i think it's less better than xlsxwriter for formatting, writing excel cell
+- For reading excel file, we need run `2 for command` to get cell value and only `1 for command` with `xlrd` .
+So i think xlrd is better than openpyxl for performance, coding, reading code.
+
+**Finally**:
+- For reading excel file I'll choose `xlrd`.
+- For writing excel file I'll choose `xlswriter`.
+
+
 ## xlsxwriter
 - This package for writing data, formatting information in particular, charts in the Excel 2010 format 
 - It supports Python 2.7, 3.4+
@@ -89,12 +106,15 @@ COLUMN_MAPPING = {
     'Column Name A1': 'mapped_key_a1',
     'Column Name A2': 'mapped_key_a2',
 }
+
 wb = xlrd.open_workbook("your_path_file.xlsx")
 ws = wb.sheet_by_index(0)
+
 raw_headers     = [cell.value for cell in ws.row(0)]
 v_fields        = [ COLUMN_MAPPING.get(h.strip()) for h in raw_headers ]
-returning_data  = []
 col_count       = len(raw_headers)
+
+returning_data  = []
 for ri in range(1, ws.nrows):  # ri aka row_index - we skip the 0th row which is the header rows
     values = [ ws.cell_value(rowx=ri, colx=ci) for ci in range(col_count) ]  # ci aka column_index
     rvr    = dict(zip(v_fields, values))
@@ -109,33 +129,35 @@ return returning_data
 - Document: https://openpyxl.readthedocs.io/en/stable/index.html
 - Code example for writing a excel file:
 ```python
-# import Workbook
 from openpyxl import Workbook
-# create Workbook object
+
 wb=Workbook()
-# set file path
-filepath="/home/user/demo.xlsx"
-# select demo.xlsx
+filepath="/home/ubuntu/demo.xlsx"
 sheet=wb.active
-data=[('Id','Name','Marks'),
-      (1,ABC,50),
-      (2,CDE,100)]
+data=[
+    ('Id','Name','Marks'),
+    (1,ABC,50),
+    (2,CDE,100)
+]
+
 # append all rows
 for row in data:
     sheet.append(row)
+
 # save file
 wb.save(filepath)
 ```
+
 - Code example for reading a excel file:
 ```python
 from openpyxl import load_workbook
 filepath="/home/ubuntu/demo.xlsx"
-# load demo.xlsx 
 wb=load_workbook(filepath)
-# select demo.xlsx
 sheet=wb.active
+
 max_row=sheet.max_row
 max_column=sheet.max_column
+
 # iterate over all cells
 for i in range(1, max_row+1):
      for j in range(1, max_column+1):
@@ -143,24 +165,26 @@ for i in range(1, max_row+1):
           cell_obj=sheet.cell(row=i, column=j)
           # print cell value     
           print(cell_obj.value, end=' | ')
-   
 ```
+
 - Code example for formatting:
 ```python
 from openpyxl.writer.dump_worksheet import WriteOnlyCell
-test_filename = _get_test_filename()
 
+filepath="/home/ubuntu/demo.xlsx"
 wb = Workbook(optimized_write=True)
 ws = wb.create_sheet()
+
 user_style = Style(font=Font(name='Courrier', size=36))
-cell = WriteOnlyCell(ws, value='hello')
-cell.style = Style(font=Font(name='Courrier', size=36))
+
+cell       = WriteOnlyCell(ws, value='hello')
+cell.style = user_style
 
 ws.append([cell, 3.14, None])
-assert user_style in wb.shared_styles
-wb.save(test_filename)
+wb.save(filepath)
 
-wb2 = load_workbook(test_filename)
+# assert user_style in wb.shared_styles
+wb2 = load_workbook(filepath)
 ws2 = wb2[ws.title]
 assert ws2['A1'].style == user_style 
 ```
@@ -226,20 +250,3 @@ pipenv --version
 
 ### 2. Run pytest
 - `cd` to `you_project_path` and run `pipenv run pytest`
-
-
-## SUMMARY
-
-### 1. xlsxwriter
-- I feel that xlsxwriter's simple, very easy to write, good at formatting.
-- I can write and work nearly normal excel (MS). 
-- Odoo framework's used to make for reporting module for many version until now.
-
-### 2. openpyxl 
-- It write and make data to excel file similar to `xlsxwriter`. But i think it's less better than xlsxwriter for formatting, writing excel cell
-- For reading excel file, we need run `2 for command` to get cell value and only `1 for command` with `xlrd` .
-So i think xlrd is better than openpyxl for performance, coding, reading code.
-
-**Finally**:
-- For reading excel file I'll choose `xlrc`.
-- For writing excel file I'll choose `xlswriter`.
