@@ -4,6 +4,8 @@ import os
 import xlrd
 from openpyxl import load_workbook, Workbook
 
+PROJECT_PATH = os.path.abspath(os.path.dirname(__file__)) + '/..'
+
 class ExcelRead:
     def xlrd_read_excel(self, path_file):
         data_return = ()
@@ -66,7 +68,7 @@ class TestExcelRun(unittest.TestCase):
     def test_xlrd_read_excel(self):
         # create fixture
         expenses = (['Rent', 1000], ['Gym', 50])
-        excel_file_name = 'test.xlsx'
+        excel_file_name = PROJECT_PATH + '/tmp/input/' + 'test.xlsx'
         excelread = ExcelRead()
 
         # check excel file is exist and it's data
@@ -76,7 +78,7 @@ class TestExcelRun(unittest.TestCase):
     def test_openpyxl_read_execl(self):
         # create fixture
         expenses = (['Rent', 1000], ['Gym', 50])
-        excel_file_name = 'test.xlsx'
+        excel_file_name = PROJECT_PATH + '/tmp/input/' + 'test.xlsx'
         excelread = ExcelRead()
 
         # check excel file is exist and it's data
@@ -86,7 +88,7 @@ class TestExcelRun(unittest.TestCase):
     def test_xlsxwriter_write_to_excel(self):
         # create fixture
         expenses = (['Rent', 1000], ['Gym', 50])
-        excel_file_name, worksheet_name = 'test2.xlsx', 'Sheet test'
+        excel_file_name, worksheet_name = PROJECT_PATH + '/tmp/output/' + 'test2.xlsx', 'Sheet test'
         excelread, excelwrite= ExcelRead(), ExcelWrite()
         excelwrite.xlsxwriter_write_to_excel(excel_file_name, worksheet_name, expenses)
 
@@ -97,7 +99,7 @@ class TestExcelRun(unittest.TestCase):
     def test_openpyxl_write_to_excel(self):
         # create fixture
         expenses = (['Rent', 1000], ['Gym', 50])
-        excel_file_name, worksheet_name = 'test2.xlsx', 'Sheet test'
+        excel_file_name, worksheet_name = PROJECT_PATH + '/tmp/output/' + 'test2.xlsx', 'Sheet test'
         excelread, excelwrite= ExcelRead(), ExcelWrite()
         excelwrite.openpyxl_write_excel(excel_file_name,  expenses)
 
