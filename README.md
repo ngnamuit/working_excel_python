@@ -164,6 +164,8 @@ wb2 = load_workbook(test_filename)
 ws2 = wb2[ws.title]
 assert ws2['A1'].style == user_style 
 ```
+
+
 ## INSTALL ENVIRONMENT AND RUN PYTEST FOR THESE ABOVE CODE
 
 ### 1. Install environment
@@ -172,11 +174,13 @@ assert ws2['A1'].style == user_style
 # Install Homebrew if it isn't already available
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
 brew install pyenv 
+
 # Add pyenv initializer to shell startup script
 echo 'eval "$(pyenv init -)"' >> ~/.bash_profile 
 source ~/.bash_profile # Reload your profile
 pyenv versions
 ```
+
 - Install pyenv for ubuntu: 
 ```buildoutcfg
 sudo apt update -y
@@ -217,10 +221,12 @@ echo 'eval "$(pipenv --completion)"'              >> ~/.bashrc # shell auto-comp
 exec "$SHELL"
 pipenv --version
 ```
-- `cd` to `you_project_path` and run `pipenv lock` to install all dependencies of project.
+
+- `cd` to `you_project_path` and run `pipenv sync` to install all dependencies of project.
 
 ### 2. Run pytest
 - `cd` to `you_project_path` and run `pipenv run pytest`
+
 
 ## SUMMARY
 
