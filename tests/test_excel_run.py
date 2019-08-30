@@ -70,7 +70,7 @@ class ExcelWrite:
             row += 1
         wb.close()
 
-    def openpyxl_write_excel(self, file_name, data_to_write=()):
+    def openpyxl_write_new_excel_file(self, file_name, data_to_write=()):
         wb = Workbook()
         ws = wb.active
 
@@ -80,6 +80,18 @@ class ExcelWrite:
 
         # save file
         wb.save(file_name)
+    
+    def openpyxl_write_existing_excel_file(self, file_name, data_to_write=()):
+        wb = load_workbook(file_name)
+        ws = wb.active
+        max_row = ws.max_row
+        for row in data_to_write:
+            for i in range(1, len(row) + 1):  ## first start column and row are 1
+                cell = ws.cell(row=max_row + 1, column=i)
+                cell.value = row[i - 1]
+            max_row += 1 ## add 1 to write new row
+        wb.save(file_name)
+        
 
 #endregion read+write xlsx util
 
@@ -117,12 +129,25 @@ class TestExcelRun(unittest.TestCase):
         assert os.path.isfile(excel_file_name)
         assert excelread.xlrd_read_excel(excel_file_name) == expenses
 
-    def test_openpyxl_write_to_excel(self):
+    def test_openpyxl_write_new_excel_file(self):
         # create fixture
         expenses = (['Rent', 1000], ['Gym', 50])
         excel_file_name, worksheet_name = PROJECT_PATH + '/tmp/output/' + 'test2.xlsx', 'Sheet test'
         excelread, excelwrite= ExcelRead(), ExcelWrite()
-        excelwrite.openpyxl_write_excel(excel_file_name,  expenses)
+        excelwrite.openpyxl_write_new_excel_file(excel_file_name,  expenses)
+
+        # check excel file is exist and it's data
+        assert os.path.isfile(excel_file_name)
+        assert excelread.openpyxl_read_excel(excel_file_name) == expenses
+
+    def test_openpyxl_write_existing_excel_file(self):
+        # create fixture
+        excel_file_name, worksheet_name = PROJECT_PATH + '/tmp/output/' + 'test2.xlsx', 'Sheet test'
+        excelread, excelwrite= ExcelRead(), ExcelWrite()
+        old_expenese = excelread.openpyxl_read_excel(excel_file_name)
+        new_expenses = (['Telephone', 300], ['Party', 200])
+        excelwrite.openpyxl_write_existing_excel_file(excel_file_name,  new_expenses) ## write new_expenses
+        expenses = old_expenese + new_expenses
 
         # check excel file is exist and it's data
         assert os.path.isfile(excel_file_name)

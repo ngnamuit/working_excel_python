@@ -130,7 +130,7 @@ return returning_data
 - This package for reading and writing Excel files 
 - It supports Python 2 and 3
 - Document: https://openpyxl.readthedocs.io/en/stable/index.html
-- Code example for writing a excel file:
+- Code example for writing a new excel file:
 ```python
 from openpyxl import Workbook
 
@@ -149,6 +149,20 @@ for row in data:
 
 # save file
 wb.save(filepath)
+```
+
+- Code example for writing a existing excel file:
+```python
+from openpyxl import load_workbook
+wb = load_workbook(existing_filepath)
+ws = wb.active
+max_row = ws.max_row   ## get max_row to write new rows from end row
+for row in data_to_write:
+    for i in range(1, len(row) + 1):  ## write each cell from first col of max_row + 1
+        cell = ws.cell(row=max_row + 1, column=i)
+        cell.value = row[i - 1]
+    max_row += 1 ## add 1 to write a new row
+wb.save(existing_filepath)
 ```
 
 - Code example for reading a excel file:
