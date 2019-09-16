@@ -7,6 +7,10 @@ Maybe, you must take a lot of time for choosing which package. For this repo, I 
 
 ## SUMMARY
 
+### z. Final conclusion
+- `openpyxl` includes read/write features of 2 package (`xlsxwriter` + `xlrd`)  and I think using one single package will be easier to handle/maintain the code.
+- I'll choose `openpyxl` package to write/read excel file.
+
 ### 1. xlsxwriter
 - I feel that xlsxwriter's simple, very easy to write, good at formatting.
 - I can write and work nearly normal excel (MS). 
@@ -20,9 +24,6 @@ Maybe, you must take a lot of time for choosing which package. For this repo, I 
 - It write to existing excel file, `xlsxwriter` can't do it.
 - It read excel file similar to `xlrd`.
 
-**Finally**:
-- `openpyxl` includes read/write features of 2 package (`xlsxwriter` + `xlrd`)  and I think using one package to work help us easier to handel.
-- I'll choose `openpyxl` package to write/read excel file.
 
 
 ## xlsxwriter
